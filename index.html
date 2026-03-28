@@ -1155,19 +1155,26 @@
     </div>
     <div class="contact-item">
       <div class="contact-icon">✉️</div>
-      <div class="contact-details"><h4>Email</h4><p>info@chawalwala.in</p></div>
+      <div class="contact-details"><h4>Email</h4><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b62656d644b68636a7c6a677c6a676a256265">[email&#160;protected]</a></p></div>
     </div>
   </div>
   <div class="contact-form reveal">
     <div class="section-eyebrow">Send a Message</div>
     <h3 style="font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin-bottom:24px;">We'll Get Back to You</h3>
-    <div class="form-row">
-      <div class="form-group"><label>Your Name</label><input type="text" placeholder="Full name"></div>
-      <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
+    <form id="contactForm">
+      <div class="form-row">
+        <div class="form-group"><label>Your Name</label><input type="text" id="fname" placeholder="Full name" required></div>
+        <div class="form-group"><label>Phone</label><input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX" required></div>
+      </div>
+      <div class="form-group"><label>Email</label><input type="email" id="femail" placeholder="your@email.com"></div>
+      <div class="form-group"><label>Message</label><textarea id="fmessage" placeholder="Tell us what you're looking for..."></textarea></div>
+      <button type="submit" class="btn-primary" id="submitBtn" style="width:100%;text-align:center;font-size:13px;border:none;cursor:pointer;">Send Message →</button>
+    </form>
+    <div id="formSuccess" style="display:none;text-align:center;padding:40px 20px;">
+      <div style="font-size:48px;margin-bottom:16px;">✅</div>
+      <h4 style="font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin-bottom:10px;">Message Sent!</h4>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:18px;color:rgba(245,223,160,0.7);">Thank you for reaching out. We'll get back to you shortly.</p>
     </div>
-    <div class="form-group"><label>Email</label><input type="email" placeholder="your@email.com"></div>
-    <div class="form-group"><label>Message</label><textarea placeholder="Tell us what you're looking for..."></textarea></div>
-    <button class="btn-primary" style="width:100%;text-align:center;font-size:13px;" onclick="alert('Thank you! We will contact you shortly.')">Send Message →</button>
   </div>
 </section>
 
@@ -1205,7 +1212,7 @@
       <ul>
         <li><a href="#">RC-79, Narayan Vihar(302020) & 189, Kishanpol bazar(302001), Jaipur, Rajasthan</a></li>
         <li><a href="#">+91 9829711433</a></li>
-        <li><a href="#">info@chawalwala.in</a></li>
+        <li><a href="#"><span class="__cf_email__" data-cfemail="0f666169604f6c676e786e63786e636e216661">[email&#160;protected]</span></a></li>
       </ul>
     </div>
   </div>
@@ -1215,10 +1222,44 @@
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Google Form submission
+const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSew9Dmd5qYoSdH1yQrIHVlUWw3ARFH7VDRCMybxpyBxJDwx4Q/formResponse';
+const ENTRY_NAME    = 'entry.1132539087';
+const ENTRY_PHONE   = 'entry.723350875';
+const ENTRY_EMAIL   = 'entry.815853662';
+const ENTRY_MESSAGE = 'entry.2116864466';
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  const formData = new FormData();
+  formData.append(ENTRY_NAME,    document.getElementById('fname').value);
+  formData.append(ENTRY_PHONE,   document.getElementById('fphone').value);
+  formData.append(ENTRY_EMAIL,   document.getElementById('femail').value);
+  formData.append(ENTRY_MESSAGE, document.getElementById('fmessage').value);
+
+  fetch(GOOGLE_FORM_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    body: formData
+  }).then(() => {
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }).catch(() => {
+    // no-cors always triggers catch, so we still show success
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  });
 });
 
 const reveals = document.querySelectorAll('.reveal');
@@ -1233,6 +1274,7 @@ const observer = new IntersectionObserver((entries) => {
 
 reveals.forEach(el => observer.observe(el));
 
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
     e.preventDefault();
