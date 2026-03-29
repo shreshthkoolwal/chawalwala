@@ -1053,7 +1053,6 @@
   .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
   .mobile-menu {
-    display: none;
     position: fixed;
     top: 72px; left: 0; right: 0;
     background: rgba(44,26,14,0.98);
@@ -1063,13 +1062,16 @@
     border-bottom: 1px solid rgba(201,146,42,0.3);
     transform: translateY(-10px);
     opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
     transition: all 0.3s ease;
   }
 
   .mobile-menu.open {
-    display: block;
     transform: translateY(0);
     opacity: 1;
+    visibility: visible;
+    pointer-events: all;
   }
 
   .mobile-menu ul {
