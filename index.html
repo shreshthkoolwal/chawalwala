@@ -561,7 +561,7 @@
 
   .cat-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-top: 48px;
   }
@@ -961,13 +961,69 @@
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   @media (max-width: 768px) {
+
+    /* Nav */
     .nav-links { display: none; }
+
+    /* Hero */
     .hero { margin-top: 0; }
-    .hero-stats { position: static; gap: 24px; }
-    .cat-grid { grid-template-columns: repeat(3, 1fr); }
-    .testimonials-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr; }
+    .hero-content { padding: 60px 5% 40px; }
+    .hero h1 { font-size: 36px; }
+    .hero-sub { font-size: 16px; }
+    .hero-stats {
+      position: static;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px 5% 40px;
+    }
+    .stat { padding-left: 16px; }
+    .stat-num { font-size: 28px; }
+
+    /* Sections */
+    section { padding: 60px 5%; }
     .about, .why-us, .contact { grid-template-columns: 1fr; gap: 40px; }
+
+    /* About image */
+    .about-visual { width: 100%; }
+    .about-img-box { width: 100%; aspect-ratio: 4/3; }
+    .about-img-box img { width: 100%; height: 100%; object-fit: cover; }
+    .about-badge { width: 90px; height: 90px; bottom: -12px; right: -8px; }
+    .about-badge strong { font-size: 26px; }
+
+    /* Categories */
+    .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .cat-card { padding: 20px 10px; }
+    .cat-card img { width: 100%; height: 70px; object-fit: cover; border-radius: 4px; }
+    .cat-icon { font-size: 28px; }
+
+    /* Products */
+    .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .product-img { height: 130px; font-size: 44px; }
+    .product-img img { width: 100%; height: 100%; object-fit: cover; }
+    .product-name { font-size: 15px; }
+    .products-header { flex-direction: column; align-items: flex-start; }
+
+    /* Trust banner */
+    .trust-metrics { gap: 24px; }
+    .metric-num { font-size: 36px; }
+
+    /* Testimonials */
+    .testimonials-grid { grid-template-columns: 1fr; }
+
+    /* Why us */
+    .why-visual { padding: 40px 24px; }
+
+    /* Contact form */
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Footer */
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-brand img { height: 36px; }
+
+    /* Section titles */
+    .section-title { font-size: 28px; }
   }
 </style>
 </head>
@@ -1156,7 +1212,7 @@
     </div>
     <div class="contact-item">
       <div class="contact-icon">✉️</div>
-      <div class="contact-details"><h4>Email</h4><li><a href="mailto:care@chawalwala.com">care@chawalwala.com</a></li></div>
+      <div class="contact-details"><h4>Email</h4><li><a href="/cdn-cgi/l/email-protection#294a485b4c694a41485e48455e484548074a4644"><span class="__cf_email__" data-cfemail="d1b2b0a3b491b2b9b0a6b0bda6b0bdb0ffb2bebc">[email&#160;protected]</span></a></li></div>
     </div>
   </div>
   <div class="contact-form reveal">
@@ -1213,7 +1269,7 @@
       <ul>
         <li><a href="#">RC–79, Narayan Vihar(302020) & 189, Kishanpol bazar(302001), Jaipur, Rajasthan</a></li>
         <li><a href="#">+91 9829711433, 7877705177</a></li>
-        <li><a href="mailto:care@chawalwala.com">care@chawalwala.com</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#6f0c0e1d0a2f0c070e180e03180e030e410c0002"><span class="__cf_email__" data-cfemail="30535142557053585147515c47515c511e535f5d">[email&#160;protected]</span></a></li>
       </ul>
     </div>
   </div>
@@ -1223,7 +1279,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 80);
