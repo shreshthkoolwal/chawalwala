@@ -964,6 +964,7 @@
 
     /* Nav */
     .nav-links { display: none; }
+    .hamburger { display: flex; }
 
     /* Hero */
     .hero { margin-top: 0; }
@@ -1025,6 +1026,87 @@
     /* Section titles */
     .section-title { font-size: 28px; }
   }
+
+  /* ── HAMBURGER MENU ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+  }
+
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 2.5px;
+    background: var(--brown-deep);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  nav.scrolled .hamburger span { background: var(--gold-pale); }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    top: 72px; left: 0; right: 0;
+    background: rgba(44,26,14,0.98);
+    backdrop-filter: blur(12px);
+    padding: 24px 8%;
+    z-index: 99;
+    border-bottom: 1px solid rgba(201,146,42,0.3);
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu.open {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .mobile-menu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .mobile-menu ul li a {
+    display: block;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-pale);
+    text-decoration: none;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(201,146,42,0.15);
+    transition: color 0.2s;
+  }
+
+  .mobile-menu ul li:last-child a { border-bottom: none; }
+  .mobile-menu ul li a:hover { color: var(--gold-light); }
+
+  .mobile-menu .mob-cta {
+    display: block;
+    margin-top: 20px;
+    background: var(--gold);
+    color: #fff !important;
+    text-align: center;
+    padding: 14px !important;
+    border-radius: 2px;
+    border-bottom: none !important;
+  }
+
 </style>
 </head>
 <body>
@@ -1040,7 +1122,23 @@
     <li><a href="#why-us">Why Us</a></li>
     <li><a href="#contact" class="nav-cta">Contact Us</a></li>
   </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <ul>
+    <li><a href="#about" onclick="closeMobileMenu()">Our Story</a></li>
+    <li><a href="#products" onclick="closeMobileMenu()">Products</a></li>
+    <li><a href="#categories" onclick="closeMobileMenu()">Categories</a></li>
+    <li><a href="#why-us" onclick="closeMobileMenu()">Why Us</a></li>
+    <li><a href="#contact" class="mob-cta" onclick="closeMobileMenu()">Contact Us</a></li>
+  </ul>
+</div>
 
 <section class="hero" id="home">
   <div class="hero-bg"></div>
@@ -1212,7 +1310,7 @@
     </div>
     <div class="contact-item">
       <div class="contact-icon">✉️</div>
-      <div class="contact-details"><h4>Email</h4><li><a href="mailto:care@chawalwala.com">care@chawalwala.com</a></span></a></li></div>
+      <div class="contact-details"><h4>Email</h4><li><a href="/cdn-cgi/l/email-protection#284b495a4d684b40495f49445f494449064b4745"><span class="__cf_email__" data-cfemail="accfcddec9eccfc4cddbcdc0dbcdc0cd82cfc3c1">[email&#160;protected]</span></a></span></a></li></div>
     </div>
   </div>
   <div class="contact-form reveal">
@@ -1269,7 +1367,7 @@
       <ul>
         <li><a href="#">RC–79, Narayan Vihar(302020) & 189, Kishanpol bazar(302001), Jaipur, Rajasthan</a></li>
         <li><a href="#">+91 9829711433, 7877705177</a></li>
-        <li><a href="mailto:care@chawalwala.com">care@chawalwala.com</a></span></a></li>
+        <li><a href="/cdn-cgi/l/email-protection#385b594a5d785b50594f59544f595459165b5755"><span class="__cf_email__" data-cfemail="345755465174575c55435558435558551a575b59">[email&#160;protected]</span></a></span></a></li>
       </ul>
     </div>
   </div>
@@ -1279,7 +1377,7 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 80);
